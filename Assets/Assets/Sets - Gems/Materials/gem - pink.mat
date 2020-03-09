@@ -5,9 +5,10 @@ Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: gem - pink
-  m_Shader: {fileID: 4800000, guid: 4443140fbd110a7011005aba44295342, type: 3}
+  m_Shader: {fileID: 4800000, guid: d68f90e25a746f9459452c25f2ffa3e1, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
@@ -38,10 +39,16 @@ Material:
     - _Emission: 0.5
     - _Emissive: 0
     - _EnvironmentLight: 2
+    - _Glossiness: 32
     - _IndexOfRefraction: 2.14
     - _ReflectionStrength: 1
+    - _RimAmount: 0.716
+    - _RimThreshold: 0.1
     m_Colors:
+    - _AmbientColor: {r: 0.7264151, g: 0, b: 0.49949524, a: 1}
     - _Color: {r: 1, g: 0, b: 1, a: 1}
+    - _RimColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SpecularColor: {r: 1, g: 0.41037738, b: 0.9345423, a: 1}
 --- !u!1002 &2100001
 EditorExtensionImpl:
   serializedVersion: 6
