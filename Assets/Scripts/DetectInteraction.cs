@@ -36,7 +36,7 @@ public class DetectInteraction : MonoBehaviour
 
     private void FixedUpdate()
     {
-        lookedAtInteractive = GetLookedAtInteractive();
+        LookedAtInteractive = GetLookedAtInteractive();
     }
 
     /// <summary>
@@ -51,7 +51,7 @@ public class DetectInteraction : MonoBehaviour
 
         IInteractive interactive = null;
 
-        lookedAtInteractive = interactive;
+        LookedAtInteractive = interactive;
 
         if (objectWasDetected)
         {

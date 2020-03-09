@@ -10,7 +10,7 @@ public class LookedAtInteractiveDisplayText : MonoBehaviour
 
     private void Awake()
     {
-        displayText.GetComponent<Text>();
+        displayText = GetComponent<Text>();
         UpdateDisplayText();
     }
 
