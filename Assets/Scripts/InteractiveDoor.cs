@@ -19,7 +19,6 @@ public class InteractiveDoor : MonoBehaviour, IInteractive
     {
         try
         {
-            int x = 0;
             audioSource.Play();
             DoorAnim.SetTrigger("open sesame");
         }
