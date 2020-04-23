@@ -5,7 +5,10 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class InteractiveDoor : InteractiveObject
 {
+    //making a key locks the door
     [SerializeField]
+    private InventoryObjects key;
+
     private bool isLocked;
 
     [Tooltip("text that displays when door is locked")]
@@ -19,8 +22,24 @@ public class InteractiveDoor : InteractiveObject
     [SerializeField]
     private AudioClip openAudioClip;
 
-    public override string DisplayText => isLocked ? lockedDisplayText : base.DisplayText;
+    private bool HasKey => PlayerInventory.InvetoryObjectsGroup.Contains(key);
+    public override string DisplayText
+    {
+        get
+        {
+            string toReturn;
+            if (isLocked)
+            {
+                toReturn = HasKey ? $"Use {key.ObjectName}" : lockedDisplayText;
+            }
+            else
+            {
+                toReturn = base.DisplayText;
+            }
 
+            return toReturn;
+        }
+    }
     private bool isOpen = false;
     private Animator animator;
 
@@ -33,21 +52,29 @@ public class InteractiveDoor : InteractiveObject
     {
         base.Awake();
         animator = GetComponent<Animator>();
+        InitializedIsLocked();
+    }
+
+    private void InitializedIsLocked()
+    {
+        if (key != null)
+            isLocked = true;
     }
 
     public override void InteractWith()
     {
         if (!isOpen)
         {
-            if (!isLocked)
+            if(isLocked && !HasKey)
+            {
+                audioSource.clip = lockedAudioClip;
+            }
+            else
             {
                 audioSource.clip = openAudioClip;
                 animator.SetTrigger("open sesame");
                 displayText = string.Empty;
-            }
-            else //if lcoked
-            {
-                audioSource.clip = lockedAudioClip;
+                isLocked = false;
             }
             base.InteractWith();
         }
