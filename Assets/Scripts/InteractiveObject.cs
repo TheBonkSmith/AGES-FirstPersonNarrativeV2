@@ -6,15 +6,15 @@ using UnityEngine;
 public class InteractiveObject : MonoBehaviour, IInteractive
 {
     [SerializeField]
-    private string displayText = nameof(InteractiveObject);
-    public string DisplayText => displayText;
-    private AudioSource audioSource;
+    protected string displayText = nameof(InteractiveObject);
+    public virtual string DisplayText => displayText;
+    protected AudioSource audioSource;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         audioSource = GetComponent<AudioSource>();
     }
-    public void InteractWith()
+    public virtual void InteractWith()
     {
         try
         {

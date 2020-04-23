@@ -3,32 +3,54 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
-public class InteractiveDoor : MonoBehaviour, IInteractive
+public class InteractiveDoor : InteractiveObject
 {
     [SerializeField]
-    private string displayText = nameof(InteractiveObject);
-    public string DisplayText => displayText;
-    private AudioSource audioSource;
-    public Animator DoorAnim;
-    private void Awake()
+    private bool isLocked;
+
+    [Tooltip("text that displays when door is locked")]
+    [SerializeField]
+    private string lockedDisplayText = "Locked";
+
+    [SerializeField]
+    private AudioClip lockedAudioClip;
+
+
+    [SerializeField]
+    private AudioClip openAudioClip;
+
+    public override string DisplayText => isLocked ? lockedDisplayText : base.DisplayText;
+
+    private bool isOpen = false;
+    private Animator animator;
+
+    public InteractiveDoor()
     {
-        DoorAnim = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
+        displayText = nameof(InteractiveDoor);
     }
-    public void InteractWith()
+
+    protected override void Awake()
     {
-        try
+        base.Awake();
+        animator = GetComponent<Animator>();
+    }
+
+    public override void InteractWith()
+    {
+        if (!isOpen)
         {
-            audioSource.Play();
-            DoorAnim.SetTrigger("open sesame");
+            if (!isLocked)
+            {
+                audioSource.clip = openAudioClip;
+                animator.SetTrigger("open sesame");
+                displayText = string.Empty;
+            }
+            else //if lcoked
+            {
+                audioSource.clip = lockedAudioClip;
+            }
+            base.InteractWith();
         }
 
-        catch (System.Exception)
-        {
-
-            throw new System.Exception("Interactive Object requires an Auidio Source Component.");
-        }
-
-        Debug.Log($"Player just interacted with {gameObject.name}.");
     }
 }
