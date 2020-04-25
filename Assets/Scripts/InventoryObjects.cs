@@ -17,7 +17,12 @@ public class InventoryObjects : InteractiveObject
     [SerializeField]
     private Sprite icon;
 
+
+    public Sprite Icon => icon;
     public string ObjectName => objectName;
+    public string Description => description;
+
+
     private new Renderer renderer;
     private new Collider collider;
 
@@ -38,5 +43,7 @@ public class InventoryObjects : InteractiveObject
         PlayerInventory.InvetoryObjectsGroup.Add(this);
         renderer.enabled = false;
         collider.enabled = false;
+        InventoryMenu.Instance.AddItemToMenu(this);
+        
     }
 }
