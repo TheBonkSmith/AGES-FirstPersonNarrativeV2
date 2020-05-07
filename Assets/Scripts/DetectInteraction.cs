@@ -13,6 +13,8 @@ public class DetectInteraction : MonoBehaviour
     [SerializeField]
     private float maxRange = 5.0f;
 
+    public RaycastHit hitInfo;
+
     ///Summary
     /// Event raised when player looks at a different IInteractive
     ///Summary
@@ -46,7 +48,7 @@ public class DetectInteraction : MonoBehaviour
     private IInteractive GetLookedAtInteractive()
     {
         Debug.DrawRay(rayCastOrigin.position, rayCastOrigin.forward * maxRange, Color.red);
-        RaycastHit hitInfo;
+      //  RaycastHit hitInfo;
         bool objectWasDetected = Physics.Raycast(rayCastOrigin.position, rayCastOrigin.forward, out hitInfo, maxRange);
 
         IInteractive interactive = null;

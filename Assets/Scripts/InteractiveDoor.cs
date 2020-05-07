@@ -9,6 +9,15 @@ public class InteractiveDoor : InteractiveObject
     [SerializeField]
     private InventoryObjects key;
 
+    [SerializeField]
+    private InventoryObjects key1;
+
+    [SerializeField]
+    private InventoryObjects key2;
+
+    [SerializeField]
+    private InventoryObjects key3;
+
     private bool isLocked;
 
     [Tooltip("text that displays when door is locked")]
@@ -22,7 +31,7 @@ public class InteractiveDoor : InteractiveObject
     [SerializeField]
     private AudioClip openAudioClip;
 
-    private bool HasKey => PlayerInventory.InvetoryObjectsGroup.Contains(key);
+    private bool HasKey => PlayerInventory.InvetoryObjectsGroup.Contains(key) && PlayerInventory.InvetoryObjectsGroup.Contains(key1) && PlayerInventory.InvetoryObjectsGroup.Contains(key2) && PlayerInventory.InvetoryObjectsGroup.Contains(key3);
     public override string DisplayText
     {
         get
@@ -30,7 +39,7 @@ public class InteractiveDoor : InteractiveObject
             string toReturn;
             if (isLocked)
             {
-                toReturn = HasKey ? $"Use {key.ObjectName}" : lockedDisplayText;
+                toReturn = HasKey ? $"USE THE BEANS!!" : lockedDisplayText;
             }
             else
             {
